@@ -2,6 +2,7 @@ package BST.find.distance;
 
 public class DistanceBetweenTwoNodes
 {
+   public static Node root;
     public int findDistance(Node root, int n1, int n2)
     {
         int leftNodeToRootNode = getPathLength(root, n1, "leftNodeToRootNode") - 2;
@@ -15,9 +16,7 @@ public class DistanceBetweenTwoNodes
     {
         if (root != null)
         {
-
             int x = 0;
-
             if(callingFrom.equals("rightNodeToRootNode"))
             {
                 if ((root.data == n1) || (x = getPathLength(root.left,
@@ -29,7 +28,6 @@ public class DistanceBetweenTwoNodes
             }
             if(!callingFrom.equals("rightNodeToRootNode"))
             {
-
                 if ((root.data == n1) || (x = getPathLength(root.left,
                         n1,"leftNodeToRootNode")) > 0  || (x = getPathLength(root.right,
                         n1,"leftNodeToRootNode")) > 0)
@@ -43,20 +41,28 @@ public class DistanceBetweenTwoNodes
         return 0;
     }
 
-    public static void main(String[] args) throws java.lang.Exception
+    public static void main(String[] args)
     {
-        Node root = new Node(5);
-        root.left = new Node(2);
-        root.right = new Node(3);
-        root.left.right = new Node(7);
-        root.left.right.right = new Node(9);
-        root.right.right = new Node(1);
-        root.right.right.left = new Node(4);
-        root.right.right.right = new Node(6);
+        try {
+            root = new Node(5);
+            root.left = new Node(2);
+            root.right = new Node(3);
+            root.left.right = new Node(7);
+            root.left.right.right = new Node(9);
+            root.right.right = new Node(1);
+            root.right.right.left = new Node(4);
+            root.right.right.right = new Node(6);
 
-       /// DistanceBetweenTwoNodes binaryTreeTest = new DistanceBetweenTwoNodes();
-        System.out.println("Distance between Node 7 and 1 is : " +
-                new DistanceBetweenTwoNodes().findDistance(root,7, 1));
+            System.out.println("Distance between Node 7 and 1 is : " +
+                    new DistanceBetweenTwoNodes().findDistance(root,7, 1));//+1-1+1+1
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            root = null;
+        }
+
     }
 
 }
